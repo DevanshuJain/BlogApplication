@@ -1,0 +1,43 @@
+<h1>WELLCOME TO POST PAGE</h1>
+<% if user_signed_in? %>
+  <%= link_to 'Create post', new_blog_post_path %>
+<% end -%>
+<table class="table">
+  <tr>
+		<th>image</th>
+  	<th>title</th>
+	  <th>text</th>
+	  <th colspan="4"></th>
+  </tr>
+  <% @post.each do |post| %>
+  <tr>
+    <% if can? :read, post %>
+    <td>
+     <%if post.avatar.attached? %>
+       <%= image_tag(post.avatar, height: '320', width: '220') %> 
+    </td>    
+      <td> <%= post.title %></td>
+      <td> <%= post.text %></td>
+    <% end %>
+    <% end %>
+   
+    <td><%= link_to 'Show', blog_post_path(@blog, post) %></td>
+    <% if can? :read, post %>
+   
+      <% if user_signed_in? %> 
+      <%# if (current_user.id.to_i == post[:user_id].to_i) %>
+          <td><%= link_to 'Edit', edit_blog_post_path(@blog, post) %></td>
+          <td><%= link_to 'Destroy', blog_post_path(post.blog_id, post.id),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+   <% end %>
+      <% if current_user && current_user.has_role?(:admin) %>
+        <td><%= link_to 'VERIFY IMAGE',   verify_blog_post_path(post.blog_id, post.id),
+             data: { confirm: 'Are you sure?' } %></td>
+      <% end%>
+      <th colspan="5"></th>
+    </tr>
+    <%# end %>
+ <% end %>
+</table>

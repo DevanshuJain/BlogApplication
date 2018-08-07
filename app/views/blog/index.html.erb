@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <h1>WELLCOME TO BLOG APPLICATION</h1>
+  <% if user_signed_in? %>
+    <%= link_to 'Create blog', new_blog_path %>
+  <% end -%>
+<table class="table">
+    <tr>
+      <th>Blog</th>
+      <th colspan="4"></th>
+    </tr>
+    <% @blog.each do |blog| %>
+      <tr>
+        <td><%= blog.title %></td>
+        <td><%= link_to 'Show', blog_post_index_path(blog) %></td>
+        <% if user_signed_in? %>
+          <td><%= link_to 'Edit', edit_blog_path(blog) %></td>    
+          <td><%= link_to 'Destroy', blog_path(blog),
+             method: :delete,
+             data: { confirm: 'Are you sure?' } %></td>
+         <th colspan="5"></th>
+        <% end -%>
+      </tr>
+    <% end %>
+</table>

@@ -1,0 +1,38 @@
+<h1>WELLCOME TO COMMENT PAGE</h1>
+<%if @post.avatar.attached? %>
+  <%= image_tag(@post.avatar, height: '320', width: '220') %>  
+<%end%>
+
+<div id="comment">
+<%= render template: 'comment/new' %>
+</div>
+ 
+<table class="table">
+  <tr>
+    <th>comments  </th>
+    <th colspan="4"></th>
+  </tr>
+  <% @comments.each do |comment| %>
+    <tr>
+      <td><%= comment.commitment %></td>
+      <td>
+        <%= link_to 'edit', edit_blog_post_comment_path(@blog.id, @post.id, :id=> "#{comment.id}") %>
+      </td>
+      <td><%= link_to 'Destroy', blog_post_comment_path(@blog, @post, :id=> "#{comment.id}"),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+      <th colspan="5"></th>
+      
+    </tr>
+  <% end %>
+</table>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+class RemoveBlogFromBlog < ActiveRecord::Migration[5.2]
+  def change
+    remove_column :blogs, :blogs, :string
+  end
+end

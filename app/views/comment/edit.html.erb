@@ -1,0 +1,10 @@
+<h1>edit page</h1>
+  <%=form_for @comments, url: {action: "update"} do |f| %>
+  <p>
+   <%= f.label :commitment %><br>
+   <%= f.text_area :commitment %>
+  </p>
+  <p>
+   <%= f.submit %>
+  </p>
+<% end %>

@@ -1,0 +1,24 @@
+<h1>post new </h1>
+<%=form_for @post, url: {action: "create"} do |form| %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= form.label :text %><br>
+    <%= form.text_area :text %>
+  </p>
+
+
+   <div class="field">
+    <%= form.label :avatar %><br />
+    <%= form.file_field :avatar, autocomplete: "avatar" %>
+  </div>
+
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
